@@ -1,0 +1,65 @@
+{# templates/time_tracker.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('script.js') }}"></script>
+{% endblock %}
+
+{% block title %}Time Tracker{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-5 text-center">Time Tracker</h1>
+
+        <!-- Timer Display -->
+        <div class="card mb-4">
+            <div class="card-header">
+                Timer
+            </div>
+            <div class="card-body text-center">
+                <h2 class="display-4" id="time">00:00:00</h2>
+                <div class="d-inline-block">
+                    {{ form_start(form, {'attr': {'class': 'd-inline'}}) }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control d-inline-block', 'placeholder': 'Enter task name', 'style': 'width: auto;'}}) }}
+                        {{ form_widget(form.start, {'attr': {'class': 'btn btn-primary d-inline-block'}}) }}
+                    {{ form_end(form) }}
+                </div>
+                <button id="stop" class="btn btn-danger d-inline-block" disabled>Stop</button>
+            </div>
+        </div>
+		<!-- Total Time Worked Today -->
+		<div class="card mb-4">
+			<div class="card-header">
+				Total Time Worked Today
+			</div>
+			<div class="card-body text-center">
+				<h2 class="display-4" id="total-time">00:00:00</h2>
+			</div>
+		</div>
+        <!-- Summary -->
+        <div class="card">
+            <div class="card-header">
+                Summary
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Task Name</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-list">
+                        <!-- List of tasks will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

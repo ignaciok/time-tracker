@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  # PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: time-tracker
+    container_name: app-container
+    ports:
+      - "9000:9000"
+
+  # MySQL Service
+  database:
+    image: mysql:5.7
+    container_name: db-container
+    environment:
+      MYSQL_DATABASE: time-tracker
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - "3306:3306"
